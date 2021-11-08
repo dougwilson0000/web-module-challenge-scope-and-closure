@@ -68,7 +68,7 @@ NOTE: This will be a callback function for the tasks below
 
 function inning(){
     return Math.floor(Math.random() * 3);
-}
+} 
 
 
 
