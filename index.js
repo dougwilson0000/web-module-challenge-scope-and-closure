@@ -104,10 +104,6 @@ function getInningScore(inningCb) {
   return {Home: inningCb(), Away: inningCb()};
 }
 console.log(getInningScore(inning));
-console.log(getInningScore(inning));
-console.log(getInningScore(inning));
-console.log(getInningScore(inning));
-console.log(getInningScore(inning));
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -150,11 +146,33 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScoreCb, inningCb, inningsToPlay) {
+  
+  let newArray = [];
+  let awayScore = 0;
+  let homeScore = 0;
+  while(inningsToPlay > 0) {
+    let scores = getInningScoreCb(inningCb);
+    newArray.push(`Inning ${inningsToPlay - (inningsToPlay + 1)}: Away ${scores.Away} - Home ${scores.Home}`);
+    awayScore += scores.Away;
+    homeScore += scores.Home;
+    
+    inningsToPlay--;
+  }
+  if (awayScore === homeScore) {
+    console.log(`This game will require extra innings: Away ${awayScore} - Home ${homeScore} `)
+  } else if ( awayScore > homeScore) {
+    console.log(`Final Score: Away ${awayScore} - Home ${homeScore}`)
+  } else if ( homeScore > awayScore) {
+    console.log(`Final Score: Home ${homeScore} - Away ${awayScore}`)
+  } 
+  else {
+    console.log('Error')
+  }
+  return newArray;
 }
 
-
+console.log(scoreboard(getInningScore, inning, 9))
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
